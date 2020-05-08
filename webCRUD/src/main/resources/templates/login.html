@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://getbootstrap.com/docs/4.3/examples/sign-in/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html; charset=UTF-8">
+    <!--引入自适应头部区-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>login</title>
+
+    <!--引用maven依赖注入的bootstrap.css-->
+    <link href="css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.css}" rel="stylesheet" >
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" th:href="@{/css/login.css}" rel="stylesheet">
+
+
+</head>
+<body class="text-center">
+<form class="form-signin" th:action="@{/user/login}" method="post">
+    <img class="mb-4" src="img/bootstrap-solid.svg" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+    <!--错误消息显示。判断不为空，显示p标签-->
+    <P style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></P>
+    <label for="username" class="sr-only" th:text="#{login.username}">Email address</label>
+    <input name="username" id="username" class="form-control" placeholder="Email address" th:placeholder="#{login.username}" required="" autofocus="">
+    <label for="inputPassword" class="sr-only" th:text="#{login.password}">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" th:placeholder="#{login.password}" required="">
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> [[#{login.remember}]]
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block"  type="submit" th:text="#{login.btn}">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">© 2019 - 4</p>
+    <!--//当点击中文或者Englist的时，会在index.html中加上L的参数，前面在config中我们已经设置了/和/index.html都会到登陆页面去就是login-->
+    <a class="btn btn-sm" th:href="@{/login.html(l='zh_CN')}">中文</a>
+    <a class="btn btn-sm" th:href="@{/login.html(l='en_US')}">English</a>
+</form>
+
+
+</body>
+</html>
